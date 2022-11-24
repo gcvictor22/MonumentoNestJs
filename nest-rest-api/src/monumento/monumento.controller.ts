@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
 import { Monumento } from "./entities/monumento.entity";
 import { MonumentoService } from "./monumento.service";
 
@@ -14,8 +14,13 @@ export class MonumentoController {
     }
 
     @Get('/:id')
-    async findOne(@Param('id') id : number): Promise<Monumento> {
-        return await this.monumentoService.findOne(id);
+    async findOne(@Res() res, @Param('id') id : number): Promise<Monumento> {
+        if (this.monumentoService.findOne(id) != null) {
+            res.status(HttpStatus.OK)
+            return await this.monumentoService.findOne(id);
+        } else {
+            
+        }
     }
 
     @Post('/')
@@ -34,14 +39,7 @@ export class MonumentoController {
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async delete(@Param('id') id: number) {
-        await this.monumentoService.delete(id);
-
-        if(!await this.monumentoService.delete(id)){
-            HttpStatus.BAD_REQUEST
-            return 'Ha ocurrido un error'
-        }
-
-        return 'Eliminado con éxito'
+        return await this.monumentoService.delete(id);
     }
 
 }
