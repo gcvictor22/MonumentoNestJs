@@ -14,6 +14,7 @@ export class MonumentoController {
     }
 
     @Get('/:id')
+    @HttpCode(HttpStatus.OK)
     async findOne(@Param('id') id : number): Promise<Monumento> {
         return await this.monumentoService.findOne(id);
     }

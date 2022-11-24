@@ -38,8 +38,26 @@ export class MonumentoService {
         return this.monumentoRepository.save(entity);
     }
 
-    update(id : number, entity : Monumento) : Promise<UpdateResult>{
-        return this.monumentoRepository.update(id, entity)
+    async update(id : number, entity : Monumento) : Promise<UpdateResult>{
+        
+        let aux : Promise<Monumento[]> = this.findAll()
+        let auxBool : boolean = false
+
+        for (let it of await aux) {
+            if (it.id == id) {
+                auxBool = true
+                break;
+            }
+        }
+        
+        if (auxBool) {
+            return this.monumentoRepository.update(id, entity)
+        }else{
+            throw new HttpException(
+                'Usuario no encontrado',
+                HttpStatus.NOT_FOUND
+            )
+        }
     }
 
     async delete(id: number) {
