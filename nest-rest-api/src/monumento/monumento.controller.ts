@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
 import { Monumento } from "./entities/monumento.entity";
 import { MonumentoService } from "./monumento.service";
 
@@ -14,13 +14,8 @@ export class MonumentoController {
     }
 
     @Get('/:id')
-    async findOne(@Res() res, @Param('id') id : number): Promise<Monumento> {
-        if (this.monumentoService.findOne(id) != null) {
-            res.status(HttpStatus.OK)
-            return await this.monumentoService.findOne(id);
-        } else {
-            
-        }
+    async findOne(@Param('id') id : number): Promise<Monumento> {
+        return await this.monumentoService.findOne(id);
     }
 
     @Post('/')

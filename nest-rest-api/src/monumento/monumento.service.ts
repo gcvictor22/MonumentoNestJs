@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, UpdateResult } from "typeorm";
 import { Monumento } from "./entities/monumento.entity";
@@ -12,8 +12,26 @@ export class MonumentoService {
         return this.monumentoRepository.find();
     }
 
-    findOne(id: number): Promise<Monumento> {
-        return this.monumentoRepository.findOneById(id);
+    async findOne(id: number): Promise<Monumento> {
+        
+        let aux : Promise<Monumento[]> = this.findAll()
+        let auxBool : boolean = false
+
+        for (let it of await aux) {
+            if (it.id == id) {
+                auxBool = true
+                break;
+            }
+        }
+        
+        if (auxBool) {
+            return this.monumentoRepository.findOneById(id);
+        }else{
+            throw new HttpException(
+                'Usuario no encontrado',
+                HttpStatus.NOT_FOUND
+            )
+        }
     }
 
     new(entity: Monumento) : Promise<Monumento> {
@@ -24,8 +42,25 @@ export class MonumentoService {
         return this.monumentoRepository.update(id, entity)
     }
 
-    delete(id: number) {
-        return this.monumentoRepository.delete(id);
+    async delete(id: number) {
+        let aux : Promise<Monumento[]> = this.findAll()
+        let auxBool : boolean = false
+
+        for (let it of await aux) {
+            if (it.id == id) {
+                auxBool = true
+                break;
+            }
+        }
+        
+        if (auxBool) {
+            return this.monumentoRepository.delete(id);
+        }else{
+            throw new HttpException(
+                'Usuario no encontrado',
+                HttpStatus.NOT_FOUND
+            )
+        }
     }
 
 }
