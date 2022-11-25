@@ -26,3 +26,9 @@ Desde el panel de control de PHPmyadmin (http://localhost/phpmyadmin/) se puede 
 de la base de datos junto con la tabla "monumento", donde se encuentran todos sus atributos, siendo el id tipo INTEGER y el resto tipo TEXT. Esta base se puede importar a partir del documento ./monumentos.sql. A parte también se incluyen 3 monumento de ejemplo
  
 <img src="./resources/CapturaPhpMyAdmin.png"/>
+
+Para ver como funciona la API, se puede hacer uso de la colección de postman que se adjunta en este mismo repositorio.
+Encontraras requests para los cinco endpoints y en la url, se encuentra una variable {{API_BASE_URL}}, definida por
+http://localhost:3000.
+
+<img src="./resources/CapturaPostMan.png"/>
