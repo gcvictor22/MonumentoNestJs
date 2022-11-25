@@ -1,17 +1,17 @@
 # RepositorioProyecto01
 
 <h2>Documentación REST API NESTJS</h2>
- 
+
+$ npm i --save @nestjs/typeorm typeorm @nestjs/swagger swagger-ui-express  
+
 A partir de las historias de usuarios dispuestas en ./historiasUsuario/nestJs.pdf, se ha
 creado la siguiente Rest Api con los cinco endpoints más básicos:
  
    - Obtener todos los monumentos.
-   - Obtener un monumento.*
+   - Obtener un monumento. :id
    - Añadir un monumento a la base de datos.
-   - Editar un monumento.*
-   - Eliminar un monumento.*
- 
-   - *A partir de un identificador.
+   - Editar un monumento. :id
+   - Eliminar un monumento. :id
  
 Toda esta documentación se puede consultar en el Swagger (http://localhost:3000/api)
  
