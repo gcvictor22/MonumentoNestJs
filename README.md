@@ -11,7 +11,7 @@ creado la siguiente Rest Api con los cinco endpoints más básicos:
    - Editar un monumento.*
    - Eliminar un monumento.*
  
-   * A partir de un identificador.
+    *A partir de un identificador.
  
 Toda esta documentación se puede consultar en el Swagger (http://localhost:3000/api)
  
