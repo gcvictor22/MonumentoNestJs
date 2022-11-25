@@ -2,7 +2,7 @@
 
 <h2>Documentación REST API NESTJS</h2>
 
-    npm i --save @nestjs/typeorm typeorm mysql @nestjs/swagger swagger-ui-express 
+    npm i --save @nestjs/typeorm typeorm mysql @nestjs/swagger swagger-ui-express @types/node
 
 A partir de las historias de usuarios dispuestas en ./historiasUsuario/nestJs.pdf, se ha
 creado la siguiente Rest Api con los cinco endpoints más básicos:
